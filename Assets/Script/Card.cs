@@ -15,6 +15,9 @@ public class Card : MonoBehaviour
     // 選択されているか判定
     private bool mIsSelected = false;
 
+    // 透過処理用
+    public CanvasGroup CanGroup;
+
     // カード情報
     private CardData mData;
 
@@ -30,10 +33,39 @@ public class Card : MonoBehaviour
 
         // 表示する画像を設定する
         // 初回は全て裏面表示とする
-        //this.CardImage.sprite = Resources.Load<Sprite>("Image/card_back");
+        this.CardImage.sprite = Resources.Load<Sprite>("Image/card_back");
 
         // 選択判定フラグを初期化する
         this.mIsSelected = false;
+
+        // アルファ値を1に設定
+        this.CanGroup.alpha = 1;
+    }
+
+    ///  <summary>
+    /// カードを背面表記にする
+    /// </summary>
+    public void SetHide()
+    {
+
+        // 選択判定フラグを初期化する
+        this.mIsSelected = false;
+
+        // カードを背面表示にする
+        this.CardImage.sprite = Resources.Load<Sprite>("Image/card_back");
+    }
+
+    /// <summary>
+    /// カードを非表示にする
+    /// </summary>
+    public void SetInvisible()
+    {
+
+        // 選択済設定にする
+        this.mIsSelected = true;
+
+        // アルファ値を0に設定 (非表示)
+        this.CanGroup.alpha = 0;
 
     }
 
